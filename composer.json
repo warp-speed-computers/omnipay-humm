@@ -1,5 +1,5 @@
 {
-    "name": "warp/omnipay-humm",
+    "name": "warp-speed-computers/omnipay-humm",
     "type": "library",
     "version": "3.0.0",
     "description": "Humm gateway for Omnipay payment processing library",
@@ -13,7 +13,7 @@
         "payment",
         "gateway"
     ],
-    "homepage": "https://github.com/mediabeastnz/omnipay-afterpay",
+    "homepage": "https://github.com/warp-speed-computers/omnipay-humm",
     "license": "MIT",
     "authors": [
         {
@@ -27,7 +27,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Omnipay\\AfterPay\\" : "src/"
+            "Omnipay\\Humm\\" : "src/"
         }
     },
     "scripts": {
