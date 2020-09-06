@@ -1,6 +1,6 @@
 <?php
 
-namespace Omnipay\AfterPay;
+namespace Omnipay\Humm;
 
 use Omnipay\Common\AbstractGateway;
 
@@ -14,7 +14,7 @@ class Gateway extends AbstractGateway
      */
     public function getName()
     {
-        return 'AfterPay';
+        return 'Humm';
     }
 
     /**
@@ -25,7 +25,7 @@ class Gateway extends AbstractGateway
         return array(
             'merchantId'     => '',
             'merchantSecret' => '',
-            'testMode'       => false,
+            'testMode'       => true, //testing for now
         );
     }
 
@@ -89,11 +89,11 @@ class Gateway extends AbstractGateway
      * minimumAmount.
      *
      * @param array $options
-     * @return \Omnipay\AfterPay\Message\ConfigurationRequest
+     * @return \Omnipay\Humm\Message\ConfigurationRequest
      */
     public function configuration(array $options = array())
     {
-        return $this->createRequest('\Omnipay\AfterPay\Message\ConfigurationRequest', $options);
+        return $this->createRequest('\Omnipay\Humm\Message\ConfigurationRequest', $options);
     }
 
     /**
@@ -104,7 +104,7 @@ class Gateway extends AbstractGateway
      */
     public function purchase(array $options = array())
     {
-        return $this->createRequest('\Omnipay\AfterPay\Message\PurchaseRequest', $options);
+        return $this->createRequest('\Omnipay\Humm\Message\PurchaseRequest', $options);
     }
 
     /**
@@ -115,7 +115,7 @@ class Gateway extends AbstractGateway
      */
     public function completePurchase(array $options = array())
     {
-        return $this->createRequest('\Omnipay\AfterPay\Message\CompletePurchaseRequest', $options);
+        return $this->createRequest('\Omnipay\Humm\Message\CompletePurchaseRequest', $options);
     }
 
     /**
@@ -126,6 +126,6 @@ class Gateway extends AbstractGateway
      */
     public function refund(array $options = array())
     {
-        return $this->createRequest('\Omnipay\AfterPay\Message\RefundRequest', $options);
+        return $this->createRequest('\Omnipay\Humm\Message\RefundRequest', $options);
     }
 }

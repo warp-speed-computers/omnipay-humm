@@ -1,6 +1,6 @@
 <?php
 
-namespace Omnipay\AfterPay;
+namespace Omnipay\Humm;
 
 use Omnipay\Tests\GatewayTestCase;
 
@@ -36,7 +36,7 @@ class GatewayTest extends GatewayTestCase
     {
         $request = $this->gateway->configuration();
 
-        $this->assertInstanceOf('Omnipay\AfterPay\Message\ConfigurationRequest', $request);
+        $this->assertInstanceOf('Omnipay\Humm\Message\ConfigurationRequest', $request);
     }
 
     /** @test */

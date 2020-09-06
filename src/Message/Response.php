@@ -1,6 +1,6 @@
 <?php
 
-namespace Omnipay\AfterPay\Message;
+namespace Omnipay\Humm\Message;
 
 use Omnipay\Common\Message\AbstractResponse;
 use Omnipay\Common\Message\RequestInterface;

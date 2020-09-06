@@ -1,8 +1,8 @@
 {
-    "name": "warp/omnipay-afterpay",
+    "name": "warp/omnipay-humm",
     "type": "library",
     "version": "3.0.0",
-    "description": "AfterPay gateway for Omnipay payment processing library",
+    "description": "Humm gateway for Omnipay payment processing library",
     "keywords": [
         "after pay",
         "afterpay",

@@ -1,13 +1,13 @@
 <?php
 
-namespace Omnipay\AfterPay\Message;
+namespace Omnipay\Humm\Message;
 
 use Omnipay\Common\Exception\InvalidResponseException;
 
 abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 {
-    protected $liveEndpoint = 'https://api.afterpay.com/v1';
-    protected $testEndpoint = 'https://api-sandbox.afterpay.com/v1';
+    protected $liveEndpoint = 'https://secure.oxipay.co.nz/Checkout?platform=Default'; //calling oxipays endpoints for now
+    protected $testEndpoint = 'https://securesandbox.oxipay.co.nz/Checkout?platform=Default';
 
 
     /**
@@ -153,6 +153,6 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     }
 
     protected function getUserAgent() {
-        return 'Omnipay (Omnipay-Afterpay/'.PHP_VERSION.' ; HGH NZ/'.$this->getMerchantId().') '.request()->getSchemeAndHttpHost();
+        return 'Omnipay (Omnipay-Afterpay/'.PHP_VERSION.' ; Millys NZ/'.$this->getMerchantId().') '.request()->getSchemeAndHttpHost();
     }
 }

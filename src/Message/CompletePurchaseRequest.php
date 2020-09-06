@@ -1,6 +1,6 @@
 <?php
 
-namespace Omnipay\AfterPay\Message;
+namespace Omnipay\Humm\Message;
 
 class CompletePurchaseRequest extends AbstractRequest
 {
