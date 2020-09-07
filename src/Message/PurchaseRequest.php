@@ -42,7 +42,7 @@ class PurchaseRequest extends AbstractRequest
         }
 
         $data = array(
-            'x_account_id' => 'Something', // Is the merchantID  
+            'x_account_id'                      => $this->getMerchantId(), // Is the merchantID  
             'x_amount'                          => $this->getAmount(),
             'x_currency'                        => $this->getCurrency(),
             'x_customer_first_name'             => $givenNames,

@@ -94,7 +94,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
                     'User-Agent' => $this->getUserAgent(),
                     'Accept' => 'application/json',
                     'Authorization' => $this->buildAuthorizationHeader(),
-                    'Content-type' => 'application/json',
+                    'Content-type' => 'application/x-www-form-urlencoded',
                 )
             );
         } else {
@@ -105,7 +105,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
                     'User-Agent' => $this->getUserAgent(),
                     'Accept' => 'application/json',
                     'Authorization' => $this->buildAuthorizationHeader(),
-                    'Content-type' => 'application/json',
+                    'Content-type' => 'application/x-www-form-urlencoded',
                 ),
                 $this->toJSON($data)
             );
