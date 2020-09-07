@@ -43,7 +43,7 @@ class PurchaseRequest extends AbstractRequest
 
         $data = array(
             'x_account_id'                      => $this->getMerchantId(), // Is the merchantID  
-            'x_amount'                          => $this->getAmount(),
+            'x_amount'                          => $this->formatPrice($this->getAmount()),
             'x_currency'                        => $this->getCurrency(),
             'x_customer_first_name'             => $givenNames,
             'x_customer_last_name'              => $surname,
@@ -66,7 +66,7 @@ class PurchaseRequest extends AbstractRequest
             'x_customer_shipping_phone'         => $card->getShippingPhone(),
             'x_reference'                       => $this->getTransactionId(),
             'x_shop_country'                    => 'NZ',
-            'x_signature'                       => '300',
+            'x_signature'                       => '300', //@@TODO actually make signature
             'x_url_complete'                    => $returnUrl,
             'x_url_cancel'                      => $cancelUrl,
             'x_url_callback'                    => $this->getNotifyUrl(),
