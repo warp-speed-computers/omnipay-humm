@@ -66,7 +66,7 @@ class PurchaseRequest extends AbstractRequest
             'x_customer_shipping_phone'         => $card->getShippingPhone(),
             'x_reference'                       => $this->getTransactionId(),
             'x_shop_country'                    => 'NZ',
-            'x_signature'                       => $this->getSignature(),
+            'x_signature'                       => '300',
             'x_url_complete'                    => $returnUrl,
             'x_url_cancel'                      => $cancelUrl,
             'x_url_callback'                    => $this->getNotifyUrl(),
