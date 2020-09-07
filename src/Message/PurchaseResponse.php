@@ -5,12 +5,13 @@ namespace Omnipay\Humm\Message;
 use Symfony\Component\HttpFoundation\Response as HttpResponse;
 
 class PurchaseResponse extends Response
-{
-    protected $script = 'https://portal.afterpay.com/afterpay.js';
-
+{    
+    /**
+     * @return string
+     */
     public function getRedirectMethod()
     {
-        return 'POST';
+        return 'GET';
     }
 
     /**
@@ -18,59 +19,25 @@ class PurchaseResponse extends Response
      */
     public function isRedirect()
     {
-        return true;
-    }
-
-    /**
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function getRedirectResponse()
-    {
-        $output = <<<EOF
-<html>
-<head>
-    <title>Redirecting...</title>
-    <script src="%s" async></script>
-</head>
-<body>
-    <script>
-    window.onload = function() {
-        AfterPay.initialize({countryCode: "%s"});
-        AfterPay.redirect({token: "%s"});
-    };
-    </script>
-</body>
-</html>
-EOF;
-
-        $output = sprintf($output, $this->getScriptUrl(), $this->getCountryCode(), $this->getToken());
-
-        return HttpResponse::create($output);
-    }
-
-    /**
-     * @return string
-     */
-    public function getScriptUrl()
-    {
-        return $this->script;
+        return $this->isSuccessful();
     }
 
     /**
      * @return string|null
      */
-    public function getToken()
+    public function getRedirectUrl()
     {
-        return $this->data['token'] ?? null;
-
-        // return isset($this->data->token) ? $this->data->token : null;
+        if ($this->isRedirect()) {
+            return $this->data['paymentUrl'];
+        }
+        return null;
     }
 
     /**
      * @return string
      */
-    public function getTransactionReference()
+    public function getPaymentUrl()
     {
-        return $this->getToken();
+        return isset($this->data['paymentUrl']) ? $this->data['paymentUrl'] : null;
     }
 }

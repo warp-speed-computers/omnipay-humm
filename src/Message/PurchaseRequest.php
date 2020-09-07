@@ -6,6 +6,7 @@ use Omnipay\Common\Exception\InvalidRequestException;
 
 class PurchaseRequest extends AbstractRequest
 {
+    
     /**
      * Get the raw data array for this message. The format of this varies from gateway to
      * gateway, but will usually be either an associative array, or a SimpleXMLElement.
@@ -41,43 +42,37 @@ class PurchaseRequest extends AbstractRequest
         }
 
         $data = array(
-            'totalAmount'     => array(
-                'amount'      => $this->getAmount(),
-                'currency'    => $this->getCurrency(),
-            ),
-            'consumer'        => array(
-                'givenNames'  => $givenNames,
-                'surname'     => $surname,
-                'email'       => $card->getEmail(),
-                'phoneNumber' => $card->getPhone(),
-            ),
-            'billing'         => array(
-                'name'        => $card->getBillingName(),
-                'line1'       => $card->getBillingAddress1(),
-                'line2'       => $card->getBillingAddress2(),
-                'suburb'      => $card->getBillingCity(),
-                'state'       => $card->getBillingState(),
-                'postcode'    => $card->getBillingPostcode(),
-                'countryCode' => $card->getBillingCountry(),
-                'phoneNumber' => $card->getBillingPhone(),
-            ),
-            'shipping'        => array(
-                'name'        => $card->getShippingName(),
-                'line1'       => $card->getShippingAddress1(),
-                'line2'       => $card->getShippingAddress2(),
-                'suburb'      => $card->getShippingCity(),
-                'state'       => $card->getShippingState(),
-                'postcode'    => $card->getShippingPostcode(),
-                'countryCode' => $card->getShippingCountry(),
-                'phoneNumber' => $card->getShippingPhone(),
-            ),
-            'items'           => $this->getItemData(),
-            'merchant'        => array(
-                // Need to append dummy parameter otherwise AfterPay breaks the hash param on return
-                'redirectConfirmUrl' => $returnUrl,
-                'redirectCancelUrl'  => $cancelUrl,
-            ),
-            'merchantReference' => $this->getTransactionReference(),
+            'x_account_id' => 'Something', // Is the merchantID  
+            'x_amount'                          => $this->getAmount(),
+            'x_currency'                        => $this->getCurrency(),
+            'x_customer_first_name'             => $givenNames,
+            'x_customer_last_name'              => $surname,
+            'x_customer_email'                  => $card->getEmail(),
+            'x_customer_phone'                  => $card->getPhone(),
+            'x_customer_billing_address1'       => $card->getBillingAddress1(),
+            'x_customer_billing_address2'       => $card->getBillingAddress2(),
+            'x_customer_billing_city'           => $card->getBillingCity(),
+            'x_customer_billing_state'          => $card->getBillingState(),
+            'x_customer_billing_postcode'       => $card->getBillingPostcode(),
+            'x_customer_billing_country'        => $card->getBillingCountry(),
+            'x_customer_phone'                  => $card->getBillingPhone(),
+            'x_customer_shipping_first_name'    => $card->getShippingName(), // need to add last name
+            'x_customer_shipping_address1'      => $card->getShippingAddress1(),
+            'x_customer_shipping_address2'      => $card->getShippingAddress2(),
+            'x_customer_shipping_city'          => $card->getShippingCity(),
+            'x_customer_shipping_country'       => $card->getShippingState(),
+            'x_customer_shipping_postcode'      => $card->getShippingPostcode(),
+            'x_customer_shipping_country'       => $card->getShippingCountry(),
+            'x_customer_shipping_phone'         => $card->getShippingPhone(),
+            'x_reference'                       => $this->getTransactionId(),
+            'x_shop_country'                    => 'NZ'
+            'x_signature'                       => $this->getSignature(),
+            'x_url_complete'                    => $returnUrl,
+            'x_url_cancel'                      => $cancelUrl,
+            'x_url_callback'                    => $this->getNotifyUrl(),
+            'x_test'                            => true, //For now
+            'items'                             => $this->getItemData(),
+            'merchantReference'                 => $this->getTransactionReference(), //???
         );
 
         return $data;
@@ -140,7 +135,7 @@ class PurchaseRequest extends AbstractRequest
      */
     public function getEndpoint()
     {
-        return parent::getEndpoint() . '/orders';
+        return $this->getTestMode() ? $this->testEndpoint : $this->liveEndpoint;
     }
 
     /**
@@ -149,6 +144,7 @@ class PurchaseRequest extends AbstractRequest
      */
     protected function createResponse($data)
     {
+        
         return new PurchaseResponse($this, $data);
     }
 
