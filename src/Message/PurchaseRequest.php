@@ -144,6 +144,7 @@ class PurchaseRequest extends AbstractRequest
      */
     protected function createResponse($data)
     {
+        return $data;
         
         return new PurchaseResponse($this, $data);
     }
