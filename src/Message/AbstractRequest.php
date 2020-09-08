@@ -92,7 +92,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
                 $this->getEndpoint() . '?' . http_build_query($data),
                 array(
                     'User-Agent' => $this->getUserAgent(),
-                    'Accept' => 'application/json',
+                    'Accept' => 'application/x-www-form-urlencoded',
                     'Authorization' => $this->buildAuthorizationHeader(),
                     'Content-type' => 'application/x-www-form-urlencoded',
                 )
@@ -103,11 +103,11 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
                 $this->getEndpoint(),
                 array(
                     'User-Agent' => $this->getUserAgent(),
-                    'Accept' => 'application/json',
+                    'Accept' => 'application/x-www-form-urlencoded',
                     'Authorization' => $this->buildAuthorizationHeader(),
                     'Content-type' => 'application/x-www-form-urlencoded',
                 ),
-                $this->toJSON($data)
+                url(encode($this->toJSON($data)),
             );
         }
 
@@ -116,7 +116,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
             // dd($httpResponse);
             $responseBody = (string) $httpResponse->getBody();
             // dd($responseBody);
-            $response = json_decode($responseBody, true) ?? [];
+            // $response = json_decode($responseBody, true) ?? [];
             // dd($response);
             $this->response = $this->createResponse($response);
 

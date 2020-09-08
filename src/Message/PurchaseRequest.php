@@ -143,8 +143,7 @@ class PurchaseRequest extends AbstractRequest
      * @return \Omnipay\AfterPay\Message\Response
      */
     protected function createResponse($data)
-    {
-        return $data;
+    {   
         
         return new PurchaseResponse($this, $data);
     }
