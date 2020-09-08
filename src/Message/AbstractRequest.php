@@ -108,7 +108,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
                     'Content-type' => 'application/x-www-form-urlencoded',
                 ),
                 url(encode($this->toJSON($data)),
-            );
+            ))
         }
 
             // $httpRequest->getCurlOptions()->set(CURLOPT_SSLVERSION, 6); // CURL_SSLVERSION_TLSv1_2 for libcurl < 7.35

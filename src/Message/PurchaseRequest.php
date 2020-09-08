@@ -71,8 +71,7 @@ class PurchaseRequest extends AbstractRequest
             'x_url_cancel'                      => $cancelUrl,
             'x_url_callback'                    => $this->getNotifyUrl(),
             'x_test'                            => true, //For now
-            'items'                             => $this->getItemData(),
-            'merchantReference'                 => $this->getTransactionReference(), //???
+            'merchantReference'                 => $this->getTransactionReference(), //???            
         );
 
         return $data;
@@ -144,7 +143,7 @@ class PurchaseRequest extends AbstractRequest
      */
     protected function createResponse($data)
     {   
-        
+
         return new PurchaseResponse($this, $data);
     }
 
